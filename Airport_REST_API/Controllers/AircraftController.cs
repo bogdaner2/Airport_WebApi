@@ -1,14 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Airport_REST_API.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Airport_REST_API.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class AircraftController : Controller
     {
+
+        public IRepository repository;
+
+        public public AircraftController(IRepository)
+        {
+            
+        }
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Airport_REST_API.Models;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +25,8 @@ namespace Airport_REST_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var mapper = MapperConfiguration().CreateMapper();
+            services.AddScoped(_ => mapper);
             services.AddMvc();
         }
 
@@ -35,6 +39,15 @@ namespace Airport_REST_API
             }
 
             app.UseMvc();
+        }
+
+        public MapperConfiguration MapperConfiguration()
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Ticket, TicketDTO>();
+            });
+            return config;
         }
     }
 }
