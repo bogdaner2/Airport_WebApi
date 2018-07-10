@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Airport_REST_API.Interfaces;
 using Airport_REST_API.Models;
+using Airport_REST_API.Services.Service;
+using Airport_REST_API.Shared.DTO;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace Airport_REST_API
 {
@@ -25,6 +22,7 @@ namespace Airport_REST_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IService,FlightService>();
             var mapper = MapperConfiguration().CreateMapper();
             services.AddScoped(_ => mapper);
             services.AddMvc();

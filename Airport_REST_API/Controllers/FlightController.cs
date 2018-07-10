@@ -8,12 +8,12 @@ namespace Airport_REST_API.Controllers
     [Route("api/[controller]")]
     public class FlightController : Controller
     {
-        private readonly IService service;
-        private readonly IMapper mapper;
+        private readonly IService _service;
+        private readonly IMapper _mapper;
         public FlightController(IService service,IMapper mapper)
         {
-            this.service = service;
-            this.mapper = mapper;
+            _service = service;
+            _mapper = mapper;
         }
         // GET api/values
         [HttpGet]
