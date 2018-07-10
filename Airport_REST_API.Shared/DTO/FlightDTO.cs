@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Airport_REST_API.Models
+namespace Airport_REST_API.Shared.DTO
 {
     public class FlightDTO
     {
