@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Airport_REST_API.Models
+namespace Airport_REST_API.DataAccess.Models
 {
     public class Crew
     {

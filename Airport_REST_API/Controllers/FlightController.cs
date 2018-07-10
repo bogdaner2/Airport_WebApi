@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Airport_REST_API.Interfaces;
+using Airport_REST_API.Services.Service;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 

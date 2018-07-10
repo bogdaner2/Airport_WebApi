@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Airport_REST_API.DataAccess.Repositories;
 
-namespace Airport_REST_API.Repositories
+namespace Airport_REST_API.DataAccess.Repositories
 {
     public class Repository<T> : IRepository<T>
     {

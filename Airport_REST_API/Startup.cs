@@ -1,5 +1,4 @@
-﻿using Airport_REST_API.Interfaces;
-using Airport_REST_API.Models;
+﻿using Airport_REST_API.DataAccess.Models;
 using Airport_REST_API.Services.Service;
 using Airport_REST_API.Shared.DTO;
 using AutoMapper;

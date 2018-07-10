@@ -1,6 +1,6 @@
-﻿using Airport_REST_API.Models;
+﻿using Airport_REST_API.DataAccess.Models;
 
-namespace Airport_REST_API.Repositories
+namespace Airport_REST_API.DataAccess.Repositories
 {
     public class AircraftRepository : Repository<Aircraft>
     {
