@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Airport_REST_API.DataAccess.Models
 {
@@ -9,6 +10,6 @@ namespace Airport_REST_API.DataAccess.Models
         public DateTime DepartureTime { get; set; }
         public string Destination { get; set; }
         public DateTime ArrivelTime { get; set; }
-        public Ticket Ticket { get; set; }
+        public List<Ticket> Ticket { get; set; }
     }
 }

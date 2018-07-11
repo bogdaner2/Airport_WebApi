@@ -1,42 +1,53 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Airport_REST_API.DataAccess.Models;
-
 
 namespace Airport_REST_API.DataAccess.Repositories
 {
-    class TicketRepository : IRepository<Ticket>
+    public class TicketRepository : IRepository<Ticket>
     {
-        private readonly List<Ticket> collection = new List<Ticket>()
+        private readonly List<Ticket> collection = new List<Ticket>
         {
-            new Ticket { Id = 1, Number = " ",Price = 100},
-            new Ticket { Id = 2, Number = " ",Price = 150},
-            new Ticket { Id = 3, Number = " ",Price = 200},
-            new Ticket { Id = 4, Number = " ",Price = 250},
-            new Ticket { Id = 5, Number = " ",Price = 300},
+            new Ticket {Id = 1, DepartureId = 1, Number = "fdg ", Price = 100},
+            new Ticket {Id = 2, DepartureId = 1, Number = "fdg ", Price = 150},
+            new Ticket {Id = 3, DepartureId = 2, Number = "dfg ", Price = 200},
+            new Ticket {Id = 4, DepartureId = 2, Number = "fdg ", Price = 250},
+            new Ticket {Id = 5, DepartureId = 2, Number = "fdg", Price = 300},
         };
         public IEnumerable<Ticket> GetAll()
         {
             return collection;
         }
-
         public Ticket Get(int id)
         {
-            throw new System.NotImplementedException();
+            return collection.FirstOrDefault(item => item.Id == id);
         }
-
-        public Ticket Add(Ticket entity)
+        public void Add(Ticket ticket)
         {
-            throw new System.NotImplementedException();
+            collection.Add(ticket);
         }
-
-        public Ticket Update(Ticket entity)
+        public void Remove(int id)
         {
-            throw new System.NotImplementedException();
+            var item = collection.FirstOrDefault(i => i.Id == id);
+            if (item != null)
+            {
+                collection.Remove(item);
+            }
+            else
+            {
+                throw new Exception();
+            }
         }
-
-        public Ticket Remove(Ticket entity)
+        public void UpdateObject(int id, Ticket obj)
         {
-            throw new System.NotImplementedException();
+            collection.Where(i => i.Id == id)
+                .Select(item => {
+                    item.Id = obj.Id;
+                    item.DepartureId = obj.DepartureId;
+                    item.Price = obj.Price;
+                    item.Number = obj.Number;
+                    return item; }).ToList();
         }
     }
 }

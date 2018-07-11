@@ -1,30 +1,32 @@
 ﻿using System.Collections.Generic;
+using Airport_REST_API.DataAccess.Models;
+using Airport_REST_API.Services.Interfaces;
 
-namespace Airport_REST_API.DataAccess.Repositories
+namespace Airport_REST_API.Services.Service
 {
-    public class Repository<T> : IRepository<T>
+    public class AircraftTypeService : IService<AircraftType>
     {
-        public IEnumerable<T> GetAll()
+        public IEnumerable<AircraftType> GetData()
         {
             throw new System.NotImplementedException();
         }
 
-        public T Get(int id)
+        public AircraftType GetObject(int id)
         {
             throw new System.NotImplementedException();
         }
 
-        public T Add(T entity)
+        public bool RemoveObject(int id)
         {
             throw new System.NotImplementedException();
         }
 
-        public T Update(T entity)
+        public bool AddObject(AircraftType obj)
         {
             throw new System.NotImplementedException();
         }
 
-        public T Remove(T entity)
+        public bool UpdateObject(int id, AircraftType obj)
         {
             throw new System.NotImplementedException();
         }

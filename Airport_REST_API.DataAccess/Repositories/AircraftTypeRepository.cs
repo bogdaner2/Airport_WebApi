@@ -3,19 +3,19 @@ using Airport_REST_API.DataAccess.Models;
 
 namespace Airport_REST_API.DataAccess.Repositories
 {
-    public class AircraftRepository : IRepository<Aircraft>
+    public class AircraftTypeRepository : IRepository<AircraftType>
     {
-        public IEnumerable<Aircraft> GetAll()
+        public IEnumerable<AircraftType> GetAll()
         {
             throw new System.NotImplementedException();
         }
 
-        public Aircraft Get(int id)
+        public AircraftType Get(int id)
         {
             throw new System.NotImplementedException();
         }
 
-        public void Add(Aircraft entity)
+        public void Add(AircraftType entity)
         {
             throw new System.NotImplementedException();
         }
@@ -25,7 +25,7 @@ namespace Airport_REST_API.DataAccess.Repositories
             throw new System.NotImplementedException();
         }
 
-        public void UpdateObject(int id, Aircraft obj)
+        public void UpdateObject(int id, AircraftType obj)
         {
             throw new System.NotImplementedException();
         }

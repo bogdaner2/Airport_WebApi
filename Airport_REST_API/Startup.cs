@@ -1,4 +1,6 @@
 ﻿using Airport_REST_API.DataAccess.Models;
+using Airport_REST_API.DataAccess.Repositories;
+using Airport_REST_API.Services.Interfaces;
 using Airport_REST_API.Services.Service;
 using Airport_REST_API.Shared.DTO;
 using AutoMapper;
@@ -21,7 +23,8 @@ namespace Airport_REST_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IService,FlightService>();
+            services.AddSingleton<IRepository<Ticket>, TicketRepository>();
+            services.AddTransient<ITicketService,TicketService>();
             var mapper = MapperConfiguration().CreateMapper();
             services.AddScoped(_ => mapper);
             services.AddMvc();
