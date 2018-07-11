@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Airport_REST_API.DataAccess;
 using Airport_REST_API.DataAccess.Models;
 using Airport_REST_API.DataAccess.Repositories;
 using Airport_REST_API.Services.Interfaces;
@@ -8,22 +9,22 @@ namespace Airport_REST_API.Services.Service
 {
     public class TicketService : ITicketService
     {
-        private readonly IRepository<Ticket> repository;
+        private readonly UnitOfWork repository;
 
-        public TicketService(IRepository<Ticket> repository)
+        public TicketService(UnitOfWork repository)
         {
             this.repository = repository;
         }
         public IEnumerable<Ticket> GetData()
         {
-            return repository.GetAll();
+            return repository.Tickets.GetAll();
         }
 
         public Ticket GetObject(int id)
         {
             if(id > 0)
             {
-                var result = repository.Get(id);
+                var result = repository.Tickets.Get(id);
                 if (result != null)
                 {
                     return result;
@@ -45,7 +46,7 @@ namespace Airport_REST_API.Services.Service
             {
                 try
                 {
-                    repository.Remove(id);
+                    repository.Tickets.Remove(id);
                     return true;
                 }
                 catch (Exception)
@@ -60,7 +61,7 @@ namespace Airport_REST_API.Services.Service
         {
             if (ticket != null)
             {
-                repository.Add(ticket);
+                repository.Tickets.Add(ticket);
                 return true;
             }
             return false;
@@ -70,7 +71,7 @@ namespace Airport_REST_API.Services.Service
         {
             if (obj != null)
             {
-                repository.UpdateObject(id,obj);
+                repository.Tickets.UpdateObject(id,obj);
                 return true;
             }
             return true;

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Airport_REST_API.Shared.DTO
 {
@@ -6,8 +6,9 @@ namespace Airport_REST_API.Shared.DTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public AircraftTypeDTO Type { get; set; }
-        public DateTime ReleseDate { get; set; }
-        public TimeSpan Lifetime { get; set; }
+        [Required]
+        public int TypeId { get; set; }
+        public string ReleseDate { get; set; }
+        public string Lifetime { get; set; }
     }
 }

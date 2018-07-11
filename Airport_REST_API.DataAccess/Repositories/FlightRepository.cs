@@ -1,28 +1,27 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Airport_REST_API.DataAccess.Models;
 
 namespace Airport_REST_API.DataAccess.Repositories
 {
-    public class AircraftTypeRepository : IRepository<AircraftType>
+    class FlightRepository : IRepository<Flight>
     {
         private DataSource db;
 
-        public AircraftTypeRepository(DataSource context)
+        public FlightRepository(DataSource context)
         {
             db = context;
         }
-        public IEnumerable<AircraftType> GetAll()
+        public IEnumerable<Flight> GetAll()
         {
-            return db.AircraftTypes;
+            throw new System.NotImplementedException();
         }
 
-        public AircraftType Get(int id)
+        public Flight Get(int id)
         {
-            return db.AircraftTypes.FirstOrDefault(i => i.Id == id);
+            throw new System.NotImplementedException();
         }
 
-        public void Add(AircraftType entity)
+        public void Add(Flight entity)
         {
             throw new System.NotImplementedException();
         }
@@ -32,7 +31,7 @@ namespace Airport_REST_API.DataAccess.Repositories
             throw new System.NotImplementedException();
         }
 
-        public void UpdateObject(int id, AircraftType obj)
+        public void UpdateObject(int id, Flight obj)
         {
             throw new System.NotImplementedException();
         }

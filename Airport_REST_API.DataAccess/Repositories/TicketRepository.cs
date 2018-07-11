@@ -7,32 +7,31 @@ namespace Airport_REST_API.DataAccess.Repositories
 {
     public class TicketRepository : IRepository<Ticket>
     {
-        private readonly List<Ticket> collection = new List<Ticket>
+        private DataSource db;
+
+        public TicketRepository(DataSource context)
         {
-            new Ticket {Id = 1, DepartureId = 1, Number = "fdg ", Price = 100},
-            new Ticket {Id = 2, DepartureId = 1, Number = "fdg ", Price = 150},
-            new Ticket {Id = 3, DepartureId = 2, Number = "dfg ", Price = 200},
-            new Ticket {Id = 4, DepartureId = 2, Number = "fdg ", Price = 250},
-            new Ticket {Id = 5, DepartureId = 2, Number = "fdg", Price = 300},
-        };
+            this.db = context;
+        }
+
         public IEnumerable<Ticket> GetAll()
         {
-            return collection;
+            return db.Tickets;
         }
         public Ticket Get(int id)
         {
-            return collection.FirstOrDefault(item => item.Id == id);
+            return db.Tickets.FirstOrDefault(item => item.Id == id);
         }
         public void Add(Ticket ticket)
         {
-            collection.Add(ticket);
+            db.Tickets.Add(ticket);
         }
         public void Remove(int id)
         {
-            var item = collection.FirstOrDefault(i => i.Id == id);
+            var item = db.Tickets.FirstOrDefault(i => i.Id == id);
             if (item != null)
             {
-                collection.Remove(item);
+                db.Tickets.Remove(item);
             }
             else
             {
@@ -41,7 +40,7 @@ namespace Airport_REST_API.DataAccess.Repositories
         }
         public void UpdateObject(int id, Ticket obj)
         {
-            collection.Where(i => i.Id == id)
+            db.Tickets.Where(i => i.Id == id)
                 .Select(item => {
                     item.Id = obj.Id;
                     item.DepartureId = obj.DepartureId;

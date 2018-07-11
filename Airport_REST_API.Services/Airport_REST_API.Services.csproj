@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Airport_REST_API.DataAccess\Airport_REST_API.DataAccess.csproj" />
     <ProjectReference Include="..\Airport_REST_API.Shared\Airport_REST_API.Shared.csproj" />
   </ItemGroup>

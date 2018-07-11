@@ -1,4 +1,5 @@
-﻿using Airport_REST_API.DataAccess.Models;
+﻿using Airport_REST_API.DataAccess;
+using Airport_REST_API.DataAccess.Models;
 using Airport_REST_API.DataAccess.Repositories;
 using Airport_REST_API.Services.Interfaces;
 using Airport_REST_API.Services.Service;
@@ -23,10 +24,17 @@ namespace Airport_REST_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IRepository<Ticket>, TicketRepository>();
+            services.AddSingleton<DataSource>();
+            //services.AddSingleton<IRepository<Aircraft>, AircraftRepository>();
+            //services.AddSingleton<IRepository<AircraftType>, AircraftTypeRepository>();
             services.AddTransient<ITicketService,TicketService>();
+            services.AddTransient<IAircraftService, AircraftService>();
+            services.AddSingleton<UnitOfWork>();
+            services.AddSingleton<AircraftTypeRepository>();
+            services.AddSingleton<AircraftRepository>();
+            services.AddSingleton<TicketRepository>(); 
             var mapper = MapperConfiguration().CreateMapper();
-            services.AddScoped(_ => mapper);
+            services.AddSingleton(_ => mapper);
             services.AddMvc();
         }
 
@@ -46,6 +54,8 @@ namespace Airport_REST_API
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Ticket, TicketDTO>();
+                cfg.CreateMap<AircraftDTO, Aircraft>()
+                    .ForMember(i => i.Type, opt => opt.Ignore());
             });
             return config;
         }

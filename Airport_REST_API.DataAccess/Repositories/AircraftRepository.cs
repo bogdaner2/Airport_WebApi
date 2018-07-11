@@ -1,28 +1,36 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Airport_REST_API.DataAccess.Models;
 
 namespace Airport_REST_API.DataAccess.Repositories
 {
     public class AircraftRepository : IRepository<Aircraft>
     {
+        private DataSource db;
+
+        public AircraftRepository(DataSource context)
+        {
+            db = context;
+        }
         public IEnumerable<Aircraft> GetAll()
         {
-            throw new System.NotImplementedException();
+            return db.Aircrafts;
         }
 
         public Aircraft Get(int id)
         {
-            throw new System.NotImplementedException();
+            return db.Aircrafts.FirstOrDefault(item => item.Id == id);
         }
 
         public void Add(Aircraft entity)
         {
-            throw new System.NotImplementedException();
+            db.Aircrafts.Add(entity);
         }
 
         public void Remove(int id)
         {
-            throw new System.NotImplementedException();
+           // db.Aircrafts.Remove(entity);
         }
 
         public void UpdateObject(int id, Aircraft obj)

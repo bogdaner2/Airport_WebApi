@@ -1,30 +1,29 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Airport_REST_API.DataAccess;
 using Airport_REST_API.DataAccess.Models;
 using Airport_REST_API.DataAccess.Repositories;
 using Airport_REST_API.Services.Interfaces;
 
 namespace Airport_REST_API.Services.Service
 {
-    public class AircraftService : IService<Aircraft>
+    public class AircraftService : IAircraftService
     {
-        private readonly IRepository<Aircraft> aircraftRepository;
-        private readonly IRepository<AircraftType> typeRepository;
+        private readonly UnitOfWork db;
 
-        public AircraftService(IRepository<Aircraft> repository, IRepository<AircraftType> types)
+        public AircraftService(UnitOfWork uof)
         {
-            aircraftRepository = repository;
-            typeRepository = types;
+            db = uof;
         }
 
         public IEnumerable<Aircraft> GetData()
         {
-            throw new System.NotImplementedException();
+            return db.Aircrafts.GetAll();
         }
 
         public Aircraft GetObject(int id)
         {
-            throw new System.NotImplementedException();
+            return db.Aircrafts.Get(id);
         }
 
         public bool RemoveObject(int id)
@@ -32,12 +31,15 @@ namespace Airport_REST_API.Services.Service
             throw new System.NotImplementedException();
         }
 
-        public bool AddObject(Aircraft obj)
+        public bool AddObject(Aircraft obj, int typeId)
         {
-            throw new System.NotImplementedException();
+            var type = db.Types.GetAll().FirstOrDefault(t => t.Id == typeId);
+            obj.Type = type;
+            db.Aircrafts.Add(obj);
+            return true;
         }
 
-        public bool UpdateObject(int id, Aircraft obj)
+        public bool UpdateObject(int id, Aircraft obj, int typeId)
         {
             throw new System.NotImplementedException();
         }
