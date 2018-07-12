@@ -12,11 +12,9 @@ namespace Airport_REST_API.Controllers
     public class TicketController : Controller
     {
         private readonly ITicketService _service;
-        private readonly IMapper _mapper;
-        public TicketController(ITicketService service,IMapper mapper)
+        public TicketController(ITicketService service)
         {
             _service = service;
-            _mapper = mapper;
         }
         // GET api/ticket
         [HttpGet]

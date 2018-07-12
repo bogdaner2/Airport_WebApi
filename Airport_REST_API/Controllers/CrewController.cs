@@ -30,25 +30,25 @@ namespace Airport_REST_API.Controllers
 
         // POSt api/Crew
         [HttpPost]
-        public IActionResult Post([FromBody]CrewDTO Crew)
+        public IActionResult Post([FromBody]CrewDTO crew)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var result = _service.AddObject(Crew);
+            var result = _service.AddObject(crew);
             return result == true ? StatusCode(200) : StatusCode(404);
         }
 
         // PUT api/Crew
         [HttpPut("{id:int}")]
-        public IActionResult Put(int id, [FromBody]CrewDTO Crew)
+        public IActionResult Put(int id, [FromBody]CrewDTO crew)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var result = _service.UpdateObject(id, Crew);
+            var result = _service.UpdateObject(id, crew);
             return result == true ? StatusCode(200) : StatusCode(404);
         }
 

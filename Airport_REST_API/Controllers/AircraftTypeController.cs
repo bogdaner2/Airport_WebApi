@@ -31,17 +31,25 @@ namespace Airport_REST_API.Controllers
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody]AircraftTypeDTO aircraft)
+        public IActionResult Post([FromBody]AircraftTypeDTO type)
         {
-            var result = _service.AddObject(aircraft);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var result = _service.AddObject(type);
             return result == true ? StatusCode(200) : StatusCode(404);
         }
 
         // PUT api/aircrafttype/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]AircraftTypeDTO aircraft)
+        public IActionResult Put(int id, [FromBody]AircraftTypeDTO type)
         {
-            var result = _service.AddObject(aircraft);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var result = _service.AddObject(type);
             return result == true ? StatusCode(200) : StatusCode(404);
         }
 

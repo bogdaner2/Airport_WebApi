@@ -59,6 +59,7 @@ namespace Airport_REST_API.DataAccess
         {
             new Crew
             {
+              Id = 1,
               Pilot = new Pilot
               {
                   Id = 1,FirstName = "Ivan" ,LastName = "Kotov",Experierence = 10,DateOfBirth = new DateTime(1978,6,17)

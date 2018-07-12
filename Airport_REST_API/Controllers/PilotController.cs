@@ -25,7 +25,7 @@ namespace Airport_REST_API.Controllers
 
         // GET api/Pilot/:id
         [HttpGet("{id:int}")]
-        public object Get(int id)
+        public Pilot Get(int id)
         {
             return _service.GetObject(id);
         }

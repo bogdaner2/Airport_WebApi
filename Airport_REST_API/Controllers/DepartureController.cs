@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Airport_REST_API.DataAccess.Models;
 using Airport_REST_API.Services.Interfaces;
+using Airport_REST_API.Shared.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Airport_REST_API.Controllers
@@ -13,36 +14,50 @@ namespace Airport_REST_API.Controllers
         {
             _service = service;
         }
-        // GET api/values
+        // GET api/departure
         [HttpGet]
         public IEnumerable<Departures> Get()
         {
             return _service.GetData();
         }
 
-        // GET api/values/5
+        // GET api/departure/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Departures Get(int id)
         {
-            return "value";
+            return _service.GetObject(id);
         }
 
-        // POST api/values
+        // POST api/departure
         [HttpPost]
-        public void Post([FromBody]string value)
+        public IActionResult Post([FromBody]DeparturesDTO departure)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var result = _service.AddObject(departure);
+            return result == true ? StatusCode(200) : StatusCode(404);
         }
 
-        // PUT api/values/5
+        // PUT api/departure/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public IActionResult Put(int id, [FromBody]DeparturesDTO departure)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var result = _service.UpdateObject(id, departure);
+            return result == true ? StatusCode(200) : StatusCode(404);
         }
 
-        // DELETE api/values/5
+        // DELETE api/departure/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            var result = _service.RemoveObject(id);
+            return result == true ? StatusCode(200) : StatusCode(404);
         }
     }
 }

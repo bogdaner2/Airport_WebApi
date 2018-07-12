@@ -38,21 +38,32 @@ namespace Airport_REST_API.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]FlightDTO flight)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState); ;
-            //var result = _service.
-            return null;
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var result = _service.AddObject(flight);
+            return result == true ? StatusCode(200) : StatusCode(404);
         }
 
-        // PUT api/values/5
+        // PUT api/flight/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public IActionResult Put(int id, [FromBody]FlightDTO flight)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var result = _service.UpdateObject(id,flight);
+            return result == true ? StatusCode(200) : StatusCode(404);
         }
 
-        // DELETE api/values/5
+        // DELETE api/flight/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            var result = _service.RemoveObject(id);
+            return result == true ? StatusCode(200) : StatusCode(404);
         }
     }
 }
