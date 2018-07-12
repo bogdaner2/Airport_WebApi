@@ -24,16 +24,18 @@ namespace Airport_REST_API.DataAccess.Repositories
 
         public void Add(Flight entity)
         {
-            throw new System.NotImplementedException();
+            db.Flights.Add(entity);
         }
 
         public void Remove(Flight entity)
         {
-            throw new System.NotImplementedException();
+            db.Flights.Remove(entity);
         }
 
         public bool UpdateObject(int id, Flight obj)
         {
+            var flag = db.Flights.Count(item => item.Id == id).Equals(0);
+            if (flag) return false;
             db.Flights.Where(i => i.Id == id)
                 .Select(item => {
                     item.Id = obj.Id;

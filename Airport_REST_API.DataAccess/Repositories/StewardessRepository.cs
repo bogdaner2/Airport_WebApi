@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Airport_REST_API.DataAccess.Models;
 
@@ -14,27 +15,38 @@ namespace Airport_REST_API.DataAccess.Repositories
         }
         public IEnumerable<Stewardess> GetAll()
         {
-            throw new NotImplementedException();
+            return db.Stewardesses;
         }
 
         public Stewardess Get(int id)
         {
-            throw new NotImplementedException();
+            return db.Stewardesses.FirstOrDefault(item => item.Id == id);
         }
 
         public void Add(Stewardess entity)
         {
-            throw new NotImplementedException();
+            db.Stewardesses.Add(entity);
         }
 
         public void Remove(Stewardess entity)
         {
-            throw new NotImplementedException();
+            db.Stewardesses.Remove(entity);
         }
 
         public bool UpdateObject(int id, Stewardess obj)
         {
-            throw new NotImplementedException();
+            var flag = db.Stewardesses.Count(item => item.Id == id).Equals(0);
+            if (flag) return false;
+            db.Stewardesses.Where(i => i.Id == id)
+                .Select(item =>
+                {
+                    item.Id = obj.Id;
+                    item.FirstName = obj.FirstName;
+                    item.LastName = obj.LastName;
+                    item.DateOfBirth = obj.DateOfBirth;
+                    return item;
+                }).ToList();
+            return true;
         }
     }
 }

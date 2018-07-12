@@ -24,17 +24,29 @@ namespace Airport_REST_API.DataAccess.Repositories
 
         public void Add(Departures entity)
         {
-            throw new System.NotImplementedException();
+           db.Departureses.Add(entity);
         }
 
         public void Remove(Departures entity)
         {
-            throw new System.NotImplementedException();
+            db.Departureses.Remove(entity)
         }
 
         public bool UpdateObject(int id, Departures obj)
         {
-            throw new System.NotImplementedException();
+            var flag = db.Departureses.Count(item => item.Id == id).Equals(0);
+            if (flag) return false;
+            db.Departureses.Where(i => i.Id == id)
+                .Select(item =>
+                {
+                    item.Id = obj.Id;
+                    item.Number = obj.Number;
+                    item.Crew = obj.Crew;
+                    item.DepartureTime = obj.DepartureTime;
+                    item.Aircraft = obj.Aircraft;
+                    return item;
+                }).ToList();
+            return true;
         }
     }
 }

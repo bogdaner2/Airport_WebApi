@@ -35,15 +35,18 @@ namespace Airport_REST_API.DataAccess.Repositories
 
         public bool UpdateObject(int id, Aircraft obj)
         {
-            //db.Aircrafts.Where(i => i.Id == id)
-            //    .Select(item =>
-            //    {
-            //        item.Id = obj.Id;
-            //        item.DepartureId = obj.DepartureId;
-            //        item.Price = obj.Price;
-            //        item.Number = obj.Number;
-            //        return item;
-            //    }).ToList();
+            var flag = db.Aircrafts.Count(item => item.Id == id).Equals(0);
+            if (flag) return false;
+            db.Aircrafts.Where(i => i.Id == id)
+                .Select(item =>
+                {
+                    item.Id = obj.Id;
+                    item.Type= obj.Type;
+                    item.Lifetime = obj.Lifetime;
+                    item.Name= obj.Name;
+                    item.ReleseDate = obj.ReleseDate;
+                    return item;
+                }).ToList();
             return true;
         }
     }
