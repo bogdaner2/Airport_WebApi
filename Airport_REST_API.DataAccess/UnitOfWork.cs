@@ -5,7 +5,7 @@ using Airport_REST_API.DataAccess.Repositories;
 
 namespace Airport_REST_API.DataAccess
 {
-    public class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private DataSource db = new DataSource();
         private TicketRepository _ticketRepository;

@@ -19,14 +19,14 @@ namespace Airport_REST_API.Services.Service
             _mapper = mapper;
         }
 
-        public IEnumerable<Pilot> GetData()
+        public IEnumerable<PilotDTO> GetData()
         {
-            return db.Pilots.GetAll();
+            return _mapper.Map<List<PilotDTO>>(db.Pilots.GetAll());
         }
 
-        public Pilot GetObject(int id)
+        public PilotDTO GetObject(int id)
         {
-            return db.Pilots.Get(id);
+            return _mapper.Map<PilotDTO>(db.Pilots.Get(id));
         }
 
         public bool RemoveObject(int id)

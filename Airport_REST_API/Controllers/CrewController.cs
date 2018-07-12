@@ -16,16 +16,16 @@ namespace Airport_REST_API.Controllers
         }
 
         [HttpGet]
-        public IEnumerable GetAll()
+        public IActionResult GetAll()
         {
-            return _service.GetData();
+            return Ok(_service.GetData());
         }
 
         // GET api/Crew/:id
         [HttpGet("{id:int}")]
-        public Crew Get(int id)
+        public IActionResult Get(int id)
         {
-            return _service.GetObject(id);
+            return Ok(_service.GetObject(id));
         }
 
         // POSt api/Crew

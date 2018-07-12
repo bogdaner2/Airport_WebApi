@@ -18,15 +18,14 @@ namespace Airport_REST_API.Services.Service
             db = uof;
             _mapper = mapper;
         }
-        public IEnumerable<Ticket> GetData()
+        public IEnumerable<TicketDTO> GetData()
         {
-            return db.Tickets.GetAll();
+            return _mapper.Map<List<TicketDTO>>(db.Tickets.GetAll());
         }
 
-        public Ticket GetObject(int id)
+        public TicketDTO GetObject(int id)
         {
-            var result = db.Tickets.Get(id);
-            return result;
+            return _mapper.Map<TicketDTO>(db.Tickets.Get(id)); ;
         }
 
         public bool RemoveObject(int id)

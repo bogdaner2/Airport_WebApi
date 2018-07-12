@@ -3,7 +3,7 @@ using Airport_REST_API.Shared.DTO;
 
 namespace Airport_REST_API.Services.Interfaces
 {
-    public interface IFlightService : IService<Flight,FlightDTO>
+    public interface IFlightService : IService<FlightDTO>
     {
     }
 }

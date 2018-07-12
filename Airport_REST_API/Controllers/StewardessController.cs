@@ -16,16 +16,16 @@ namespace Airport_REST_API.Controllers
         }
         // GET api/Stewardess
         [HttpGet]
-        public IEnumerable GetAll()
+        public IActionResult GetAll()
         {
-            return _service.GetData();
+            return Ok(_service.GetData());
         }
 
         // GET api/Stewardess/:id
         [HttpGet("{id:int}")]
-        public Stewardess Get(int id)
+        public IActionResult Get(int id)
         {
-            return _service.GetObject(id);
+            return Ok(_service.GetObject(id));
         }
 
         // POSt api/Stewardess

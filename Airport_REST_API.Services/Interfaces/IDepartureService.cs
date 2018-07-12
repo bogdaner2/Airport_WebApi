@@ -3,7 +3,7 @@ using Airport_REST_API.Shared.DTO;
 
 namespace Airport_REST_API.Services.Interfaces
 {
-    public interface IDepartureService : IService<Departures,DeparturesDTO>
+    public interface IDepartureService : IService<DeparturesDTO>
     {
     }
 }

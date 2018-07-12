@@ -89,6 +89,7 @@ namespace Airport_REST_API.DataAccess
                     Type =  new AircraftType { Id = 3,CarryingCapacity = 107900,CountOfSeats = 214, Model = "Туполев Ту-204"}},
                 Crew =  new Crew
                 {
+                    Id = 1,
                     Pilot = new Pilot
                     {
                         Id = 1,FirstName = "Ivan" ,LastName = "Kotov",Experierence = 10,DateOfBirth = new DateTime(1978,6,17)

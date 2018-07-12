@@ -24,11 +24,12 @@ namespace Airport_REST_API.DataAccess.Repositories
         }
         public void Add(Ticket ticket)
         {
+            
             db.Tickets.Add(ticket);
         }
         public void Remove(Ticket entity)
         {
-                db.Tickets.Remove(entity);
+            db.Tickets.Remove(entity);
         }
         public bool UpdateObject(int id, Ticket obj)
         {

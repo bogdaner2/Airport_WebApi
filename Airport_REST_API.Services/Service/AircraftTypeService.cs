@@ -18,14 +18,14 @@ namespace Airport_REST_API.Services.Service
             db = uof;
             _mapper = mapper;
         }
-        public IEnumerable<AircraftType> GetData()
+        public IEnumerable<AircraftTypeDTO> GetData()
         {
-            return db.Types.GetAll();
+            return _mapper.Map<List<AircraftTypeDTO>>(db.Types.GetAll());
         }
 
-        public AircraftType GetObject(int id)
+        public AircraftTypeDTO GetObject(int id)
         {
-            return db.Types.Get(id);
+            return _mapper.Map<AircraftTypeDTO>(db.Types.Get(id));
         }
 
         public bool RemoveObject(int id)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Airport_REST_API.DataAccess;
 using Airport_REST_API.DataAccess.Models;
@@ -19,14 +20,14 @@ namespace Airport_REST_API.Services.Service
             _mapper = mapper;
         }
 
-        public IEnumerable<Aircraft> GetData()
+        public IEnumerable<AircraftDTO> GetData()
         {
-            return db.Aircrafts.GetAll();
+            return _mapper.Map<List<AircraftDTO>>(db.Aircrafts.GetAll());
         }
 
-        public Aircraft GetObject(int id)
+        public AircraftDTO GetObject(int id)
         {
-            return db.Aircrafts.Get(id);
+            return _mapper.Map<AircraftDTO>(db.Aircrafts.Get(id));
         }
 
         public bool RemoveObject(int id)

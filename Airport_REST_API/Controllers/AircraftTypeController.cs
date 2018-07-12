@@ -17,16 +17,16 @@ namespace Airport_REST_API.Controllers
         }
         // GET api/values
         [HttpGet]
-        public IEnumerable<AircraftType> Get()
+        public IActionResult Get()
         {
-            return _service.GetData();
+            return Ok(_service.GetData());
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public AircraftType Get(int id)
+        public IActionResult Get(int id)
         {
-            return _service.GetObject(id);
+            return Ok(_service.GetObject(id));
         }
 
         // POST api/values
