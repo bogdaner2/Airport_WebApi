@@ -39,16 +39,20 @@ namespace Airport_REST_API.Controllers
             return result == true ? StatusCode(200) : StatusCode(404);
         }
 
-        // PUT api/values/5
+        // PUT api/aircrafttype/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]AircraftDTO aircraft)
+        public IActionResult Put(int id, [FromBody]AircraftDTO aircraft)
         {
+            var result = _service.AddObject(_mapper.Map<AircraftType>(aircraft));
+            return result == true ? StatusCode(200) : StatusCode(404);
         }
 
-        // DELETE api/values/5
+        // DELETE api/aircrafttype/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            var result = _service.RemoveObject(id);
+            return result == true ? StatusCode(200) : StatusCode(404);
         }
     }
 }

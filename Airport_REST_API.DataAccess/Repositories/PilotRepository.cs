@@ -3,7 +3,7 @@ using Airport_REST_API.DataAccess.Models;
 
 namespace Airport_REST_API.DataAccess.Repositories
 {
-    class PilotRepository : IRepository<Pilot>
+    public class PilotRepository : IRepository<Pilot>
     {
         private DataSource db;
 

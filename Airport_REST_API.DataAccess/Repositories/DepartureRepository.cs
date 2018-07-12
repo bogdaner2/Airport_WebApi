@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Airport_REST_API.DataAccess.Models;
 
 namespace Airport_REST_API.DataAccess.Repositories
 {
-    class DepartureRepository : IRepository<Departures>
+    public class DepartureRepository : IRepository<Departures>
     {
         private DataSource db;
 
@@ -13,12 +14,12 @@ namespace Airport_REST_API.DataAccess.Repositories
         }
         public IEnumerable<Departures> GetAll()
         {
-            throw new System.NotImplementedException();
+            return db.Departureses;
         }
 
         public Departures Get(int id)
         {
-            throw new System.NotImplementedException();
+            return db.Departureses.FirstOrDefault(item => item.Id == id);
         }
 
         public void Add(Departures entity)

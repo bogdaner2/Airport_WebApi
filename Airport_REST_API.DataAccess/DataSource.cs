@@ -110,7 +110,7 @@ namespace Airport_REST_API.DataAccess
         {
             new Flight
             {
-                Number = "107",PointOfDeparture = "London",Destination = "Paris",DepartureTime = DateTime.Now,
+                Id = 1,Number = "107",PointOfDeparture = "London",Destination = "Paris",DepartureTime = DateTime.Now,
                 ArrivelTime = DateTime.Now,
                 Ticket = new List<Ticket>
                 {

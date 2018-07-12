@@ -12,17 +12,11 @@ namespace Airport_REST_API.DataAccess
         private AircraftRepository _aircraftRepository;
         private AircraftTypeRepository _typeRepository;
         private CrewRepository _crewRepository;
+        private StewardessRepository _stewardessRepository;
+        private PilotRepository _pilotRepository;
+        private DepartureRepository _departureRepository;
+        private FlightRepository _flightRepository;
 
-        public UnitOfWork(AircraftRepository aircraftRepository,
-            TicketRepository ticketRepository,
-            AircraftTypeRepository typeRepository,
-            CrewRepository crewRepository)
-        {
-            _aircraftRepository = aircraftRepository;
-            _ticketRepository = ticketRepository;
-            _typeRepository = typeRepository;
-            _crewRepository = crewRepository;
-        }
 
         public TicketRepository Tickets
         {
@@ -58,6 +52,42 @@ namespace Airport_REST_API.DataAccess
                 if (_crewRepository == null)
                     _crewRepository = new CrewRepository(db);
                 return _crewRepository;
+            }
+        }
+        public StewardessRepository Stewardess
+        {
+            get
+            {
+                if (_stewardessRepository == null)
+                    _stewardessRepository = new StewardessRepository(db);
+                return _stewardessRepository;
+            }
+        }
+        public PilotRepository Pilots
+        {
+            get
+            {
+                if (_pilotRepository == null)
+                    _pilotRepository = new PilotRepository(db);
+                return _pilotRepository;
+            }
+        }
+        public FlightRepository Flights
+        {
+            get
+            {
+                if (_flightRepository == null)
+                    _flightRepository = new FlightRepository(db);
+                return _flightRepository;
+            }
+        }
+        public DepartureRepository Departures
+        {
+            get
+            {
+                if (_departureRepository == null)
+                    _departureRepository = new DepartureRepository(db);
+                return _departureRepository;
             }
         }
     }

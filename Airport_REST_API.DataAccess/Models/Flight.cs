@@ -5,6 +5,7 @@ namespace Airport_REST_API.DataAccess.Models
 {
     public class Flight
     {
+        public int Id { get; set; }
         public string Number { get; set; }
         public string PointOfDeparture { get; set; }
         public DateTime DepartureTime { get; set; }

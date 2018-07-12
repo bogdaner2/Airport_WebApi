@@ -1,10 +1,11 @@
 ﻿using Airport_REST_API.DataAccess.Models;
+using Airport_REST_API.Shared.DTO;
 
 namespace Airport_REST_API.Services.Interfaces
 {
     public interface IAircraftService : IService<Aircraft>
     {
-        bool AddObject(Aircraft obj,int typeId);
-        bool UpdateObject(int id, Aircraft obj,int typeId);
+        bool AddObject(AircraftDTO obj);
+        bool UpdateObject(int id, AircraftDTO obj);
     }
 }

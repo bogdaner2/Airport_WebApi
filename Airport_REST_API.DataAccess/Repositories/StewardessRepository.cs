@@ -5,7 +5,7 @@ using Airport_REST_API.DataAccess.Models;
 
 namespace Airport_REST_API.DataAccess.Repositories
 {
-    class StewardessRepository : IRepository<Stewardess>
+    public class StewardessRepository : IRepository<Stewardess>
     {
         private DataSource db;
         public StewardessRepository(DataSource context)

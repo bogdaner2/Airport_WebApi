@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Airport_REST_API.DataAccess;
 using Airport_REST_API.DataAccess.Models;
 using Airport_REST_API.Services.Interfaces;
 
 namespace Airport_REST_API.Services.Service
 {
-    public class AircraftTypeService : IService<AircraftType>
+    public class AircraftTypeService : IAircraftTypeService
     {
         private readonly UnitOfWork db;
 
@@ -20,7 +21,7 @@ namespace Airport_REST_API.Services.Service
 
         public AircraftType GetObject(int id)
         {
-            throw new System.NotImplementedException();
+            return db.Types.GetAll().FirstOrDefault(item => item.Id == id);
         }
 
         public bool RemoveObject(int id)

@@ -2,16 +2,20 @@
 using Airport_REST_API.DataAccess;
 using Airport_REST_API.DataAccess.Models;
 using Airport_REST_API.Services.Interfaces;
+using Airport_REST_API.Shared.DTO;
+using AutoMapper;
 
 namespace Airport_REST_API.Services.Service
 {
     public class CrewService : ICrewService
     {
         private readonly UnitOfWork db;
+        private readonly IMapper _mapper;
 
-        public CrewService(UnitOfWork uof)
+        public CrewService(UnitOfWork uof,IMapper mapper)
         {
             db = uof;
+            _mapper = mapper;
         }
 
         public IEnumerable<Crew> GetData()
@@ -30,13 +34,14 @@ namespace Airport_REST_API.Services.Service
              return true;
         }
 
-        public bool AddObject(Crew obj, int typeId)
+        public bool AddObject(CrewDTO obj)
         {
-            db.Crews.Add(obj);
+            
+            //db.Crews.Add(obj);
             return true;
         }
 
-        public bool UpdateObject(int id, Crew obj, int typeId)
+        public bool UpdateObject(int id, CrewDTO obj)
         {
             throw new System.NotImplementedException();
         }

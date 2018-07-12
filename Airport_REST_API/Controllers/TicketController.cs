@@ -1,7 +1,8 @@
 ﻿using System.Collections;
+using System.Linq;
 using Airport_REST_API.DataAccess.Models;
 using Airport_REST_API.Services.Interfaces;
-using Airport_REST_API.Services.Service;
+using Airport_REST_API.Shared.DTO;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,9 +12,11 @@ namespace Airport_REST_API.Controllers
     public class TicketController : Controller
     {
         private readonly ITicketService _service;
-        public TicketController(ITicketService service)
+        private readonly IMapper _mapper;
+        public TicketController(ITicketService service,IMapper mapper)
         {
             _service = service;
+            _mapper = mapper;
         }
         // GET api/ticket
         [HttpGet]
@@ -31,17 +34,27 @@ namespace Airport_REST_API.Controllers
 
         // POSt api/ticket
         [HttpPost]
-        public IActionResult Post([FromBody]Ticket ticket)
+        public IActionResult Post([FromBody]TicketDTO ticket)
         {
-            var result =  _service.AddObject(ticket);
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Select(x => x.Value.Errors).Where(y => y.Count > 0);
+                return StatusCode(400, errors);
+            }
+            var result = _service.AddObject(_mapper.Map<Ticket>(ticket));
             return result == true ? StatusCode(200) : StatusCode(404);
         }
 
         // PUT api/ticket
         [HttpPut("{id:int}")]
-        public IActionResult Put(int id,[FromBody]Ticket ticket)
+        public IActionResult Put(int id,[FromBody]TicketDTO ticket)
         {
-            var result = _service.UpdateObject(id,ticket);
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Select(x => x.Value.Errors).Where(y => y.Count > 0);
+                return StatusCode(400, errors);
+            }
+            var result = _service.UpdateObject(id, _mapper.Map<Ticket>(ticket));
             return result == true ? StatusCode(200) : StatusCode(404);
         }
 
@@ -52,8 +65,5 @@ namespace Airport_REST_API.Controllers
             var result = _service.RemoveObject(id);
             return result == true ? StatusCode(200) : StatusCode(404);
         }
-
-
-
     }
 }

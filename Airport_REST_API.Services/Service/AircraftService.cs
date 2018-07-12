@@ -3,16 +3,20 @@ using System.Linq;
 using Airport_REST_API.DataAccess;
 using Airport_REST_API.DataAccess.Models;
 using Airport_REST_API.Services.Interfaces;
+using Airport_REST_API.Shared.DTO;
+using AutoMapper;
 
 namespace Airport_REST_API.Services.Service
 {
     public class AircraftService : IAircraftService
     {
         private readonly UnitOfWork db;
+        private IMapper _mapper;
 
-        public AircraftService(UnitOfWork uof)
+        public AircraftService(UnitOfWork uof,IMapper mapper)
         {
             db = uof;
+            _mapper = mapper;
         }
 
         public IEnumerable<Aircraft> GetData()
@@ -30,15 +34,16 @@ namespace Airport_REST_API.Services.Service
             throw new System.NotImplementedException();
         }
 
-        public bool AddObject(Aircraft obj, int typeId)
+        public bool AddObject(AircraftDTO obj)
         {
-            var type = db.Types.GetAll().FirstOrDefault(t => t.Id == typeId);
-            obj.Type = type;
-            db.Aircrafts.Add(obj);
+            var type = db.Types.GetAll().FirstOrDefault(t => t.Id == obj.TypeId);
+            var aircraft = _mapper.Map<Aircraft>(obj);
+            aircraft.Type = type;
+            db.Aircrafts.Add(aircraft);
             return true;
         }
 
-        public bool UpdateObject(int id, Aircraft obj, int typeId)
+        public bool UpdateObject(int id, AircraftDTO obj)
         {
             throw new System.NotImplementedException();
         }
