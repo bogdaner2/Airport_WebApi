@@ -11,14 +11,17 @@ namespace Airport_REST_API.DataAccess
         private TicketRepository _ticketRepository;
         private AircraftRepository _aircraftRepository;
         private AircraftTypeRepository _typeRepository;
+        private CrewRepository _crewRepository;
 
         public UnitOfWork(AircraftRepository aircraftRepository,
             TicketRepository ticketRepository,
-            AircraftTypeRepository typeRepository)
+            AircraftTypeRepository typeRepository,
+            CrewRepository crewRepository)
         {
             _aircraftRepository = aircraftRepository;
             _ticketRepository = ticketRepository;
             _typeRepository = typeRepository;
+            _crewRepository = crewRepository;
         }
 
         public TicketRepository Tickets
@@ -46,6 +49,15 @@ namespace Airport_REST_API.DataAccess
                 if (_typeRepository == null)
                     _typeRepository = new AircraftTypeRepository(db);
                 return _typeRepository;
+            }
+        }
+        public CrewRepository Crews
+        {
+            get
+            {
+                if (_crewRepository == null)
+                    _crewRepository = new CrewRepository(db);
+                return _crewRepository;
             }
         }
     }

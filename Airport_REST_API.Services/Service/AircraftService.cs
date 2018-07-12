@@ -2,7 +2,6 @@
 using System.Linq;
 using Airport_REST_API.DataAccess;
 using Airport_REST_API.DataAccess.Models;
-using Airport_REST_API.DataAccess.Repositories;
 using Airport_REST_API.Services.Interfaces;
 
 namespace Airport_REST_API.Services.Service

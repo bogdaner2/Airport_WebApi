@@ -5,7 +5,7 @@ using Airport_REST_API.DataAccess.Models;
 
 namespace Airport_REST_API.DataAccess.Repositories
 {
-    class CrewRepository : IRepository<Crew>
+    public class CrewRepository : IRepository<Crew>
     {
         private DataSource db;
 

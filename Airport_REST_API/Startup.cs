@@ -1,4 +1,5 @@
-﻿using Airport_REST_API.DataAccess;
+﻿using System;
+using Airport_REST_API.DataAccess;
 using Airport_REST_API.DataAccess.Models;
 using Airport_REST_API.DataAccess.Repositories;
 using Airport_REST_API.Services.Interfaces;
@@ -32,7 +33,8 @@ namespace Airport_REST_API
             services.AddSingleton<UnitOfWork>();
             services.AddSingleton<AircraftTypeRepository>();
             services.AddSingleton<AircraftRepository>();
-            services.AddSingleton<TicketRepository>(); 
+            services.AddSingleton<TicketRepository>();
+            services.AddSingleton<CrewRepository>();
             var mapper = MapperConfiguration().CreateMapper();
             services.AddSingleton(_ => mapper);
             services.AddMvc();
@@ -53,9 +55,12 @@ namespace Airport_REST_API
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Ticket, TicketDTO>();
+                cfg.CreateMap<TicketDTO,Ticket>();
                 cfg.CreateMap<AircraftDTO, Aircraft>()
                     .ForMember(i => i.Type, opt => opt.Ignore());
+                cfg.CreateMap<AircraftTypeDTO, AircraftType>();
+                cfg.CreateMap<FlightDTO, Flight>()
+                    .ForMember(i => i.ArrivelTime, opt => opt.MapFrom(m => DateTime.Parse(m.ArrivelTime)));
             });
             return config;
         }

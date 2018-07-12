@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Airport_REST_API.DataAccess;
 using Airport_REST_API.DataAccess.Models;
 using Airport_REST_API.Services.Interfaces;
 
@@ -6,9 +7,15 @@ namespace Airport_REST_API.Services.Service
 {
     public class AircraftTypeService : IService<AircraftType>
     {
+        private readonly UnitOfWork db;
+
+        public AircraftTypeService(UnitOfWork uof)
+        {
+            db = uof;
+        }
         public IEnumerable<AircraftType> GetData()
         {
-            throw new System.NotImplementedException();
+            return db.Types.GetAll();
         }
 
         public AircraftType GetObject(int id)
@@ -18,12 +25,18 @@ namespace Airport_REST_API.Services.Service
 
         public bool RemoveObject(int id)
         {
-            throw new System.NotImplementedException();
+           db.Types.Remove(id);
+           return true;
         }
 
         public bool AddObject(AircraftType obj)
         {
-            throw new System.NotImplementedException();
+            if (obj != null)
+            {
+                db.Types.Add(obj);
+                return true;
+            }
+            return false;
         }
 
         public bool UpdateObject(int id, AircraftType obj)

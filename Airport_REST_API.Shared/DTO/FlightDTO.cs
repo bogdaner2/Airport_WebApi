@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Airport_REST_API.Shared.DTO
 {
@@ -6,9 +7,9 @@ namespace Airport_REST_API.Shared.DTO
     {
         public string Number { get; set; }
         public string PointOfDeparture { get; set; }
-        public DateTime DepartureTime { get; set; }
+        public string DepartureTime { get; set; }
         public string Destination { get; set; }
-        public DateTime ArrivelTime { get; set; }
-        public TicketDTO Ticket { get; set; }
+        public string ArrivelTime { get; set; }
+        public List<int> TicketsId { get; set; }
     }
 }
