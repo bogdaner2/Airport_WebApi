@@ -8,50 +8,51 @@ using AutoMapper;
 
 namespace Airport_REST_API.Services.Service
 {
-    public class AircraftTypeService : IAircraftTypeService
+    public class StewardessService : IStewardessService
     {
         private readonly UnitOfWork db;
         private readonly IMapper _mapper;
 
-        public AircraftTypeService(UnitOfWork uof,IMapper mapper)
+        public StewardessService(UnitOfWork uof, IMapper mapper)
         {
             db = uof;
             _mapper = mapper;
         }
-        public IEnumerable<AircraftType> GetData()
+
+        public IEnumerable<Stewardess> GetData()
         {
-            return db.Types.GetAll();
+            return db.Stewardess.GetAll();
         }
 
-        public AircraftType GetObject(int id)
+        public Stewardess GetObject(int id)
         {
-            return db.Types.Get(id);
+            return db.Stewardess.Get(id);
         }
 
         public bool RemoveObject(int id)
         {
-            var type = db.Types.GetAll().FirstOrDefault(item => item.Id == id);
-            if (type != null)
+            var stewardess = db.Stewardess.GetAll().FirstOrDefault(item => item.Id == id);
+            if (stewardess != null)
             {
-                db.Types.Remove(type);
+                db.Stewardess.Remove(stewardess);
                 return true;
             }
             return false;
         }
 
-        public bool AddObject(AircraftTypeDTO obj)
+        public bool AddObject(StewardessDTO obj)
         {
             if (obj != null)
             {
-                db.Types.Add(_mapper.Map<AircraftType>(obj));
+                db.Stewardess.Add(_mapper.Map<Stewardess>(obj));
                 return true;
             }
             return false;
         }
 
-        public bool UpdateObject(int id, AircraftTypeDTO obj)
+        public bool UpdateObject(int id, StewardessDTO obj)
         {
-            return db.Types.UpdateObject(id, _mapper.Map<AircraftType>(obj));
+            return db.Stewardess.UpdateObject(id, _mapper.Map<Stewardess>(obj));
         }
     }
 }

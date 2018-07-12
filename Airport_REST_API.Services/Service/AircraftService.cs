@@ -11,7 +11,7 @@ namespace Airport_REST_API.Services.Service
     public class AircraftService : IAircraftService
     {
         private readonly UnitOfWork db;
-        private IMapper _mapper;
+        private readonly IMapper _mapper;
 
         public AircraftService(UnitOfWork uof,IMapper mapper)
         {
@@ -31,12 +31,16 @@ namespace Airport_REST_API.Services.Service
 
         public bool RemoveObject(int id)
         {
-            throw new System.NotImplementedException();
+            var aircraft = db.Aircrafts.GetAll().FirstOrDefault(a => a.Id == id);
+            if (aircraft == null){return false;}
+            db.Aircrafts.Remove(aircraft);
+            return true;
         }
 
         public bool AddObject(AircraftDTO obj)
         {
             var type = db.Types.GetAll().FirstOrDefault(t => t.Id == obj.TypeId);
+            if (type == null || obj == null){return false;}
             var aircraft = _mapper.Map<Aircraft>(obj);
             aircraft.Type = type;
             db.Aircrafts.Add(aircraft);
@@ -45,7 +49,11 @@ namespace Airport_REST_API.Services.Service
 
         public bool UpdateObject(int id, AircraftDTO obj)
         {
-            throw new System.NotImplementedException();
+            var type = db.Types.GetAll().FirstOrDefault(t => t.Id == obj.TypeId);
+            if (type == null || obj == null) { return false; }
+            var aircraft = _mapper.Map<Aircraft>(obj);
+            aircraft.Type = type;
+            return db.Aircrafts.UpdateObject(id,aircraft);
         }
     }
 }

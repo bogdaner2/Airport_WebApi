@@ -1,7 +1,6 @@
 ﻿using System;
 using Airport_REST_API.DataAccess;
 using Airport_REST_API.DataAccess.Models;
-using Airport_REST_API.DataAccess.Repositories;
 using Airport_REST_API.Services.Interfaces;
 using Airport_REST_API.Services.Service;
 using Airport_REST_API.Shared.DTO;
@@ -53,10 +52,21 @@ namespace Airport_REST_API
             {
                 cfg.CreateMap<TicketDTO,Ticket>();
                 cfg.CreateMap<AircraftDTO, Aircraft>()
-                    .ForMember(i => i.Type, opt => opt.Ignore());
+                    .ForMember(i => i.Type, opt => opt.Ignore())
+                    .ForMember(i => i.Lifetime,opt => opt.MapFrom(m => DateTime.Now - DateTime.Parse(m.Lifetime)));
+                cfg.CreateMap<PilotDTO, Pilot>();
+                cfg.CreateMap<StewardessDTO, Stewardess>();
                 cfg.CreateMap<AircraftTypeDTO, AircraftType>();
                 cfg.CreateMap<FlightDTO, Flight>()
                     .ForMember(i => i.ArrivelTime, opt => opt.MapFrom(m => DateTime.Parse(m.ArrivelTime)));
+                cfg.CreateMap<DeparturesDTO, Departures>()
+                    .ForMember(i => i.Aircraft, opt => opt.Ignore())
+                    .ForMember(i => i.Crew, opt => opt.Ignore())
+                    .ForMember(i => i.DepartureTime, opt => opt.MapFrom(m => DateTime.Parse(m.DepartureTime)));
+                cfg.CreateMap<CrewDTO, Crew>()
+                    .ForMember(i => i.Stewardesses, opt => opt.Ignore())
+                    .ForMember(i => i.Pilot, opt => opt.Ignore());
+
             });
             return config;
         }

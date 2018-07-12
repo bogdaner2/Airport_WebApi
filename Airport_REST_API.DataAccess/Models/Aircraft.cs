@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Airport_REST_API.DataAccess.Models
 {
     public class Aircraft
     {
+        [Required]
         public int Id { get; set; }
         public string Name { get; set; }
         public AircraftType Type { get; set; }

@@ -8,50 +8,51 @@ using AutoMapper;
 
 namespace Airport_REST_API.Services.Service
 {
-    public class AircraftTypeService : IAircraftTypeService
+    public class PilotService : IPilotService
     {
         private readonly UnitOfWork db;
         private readonly IMapper _mapper;
 
-        public AircraftTypeService(UnitOfWork uof,IMapper mapper)
+        public PilotService(UnitOfWork uof,IMapper mapper)
         {
             db = uof;
             _mapper = mapper;
         }
-        public IEnumerable<AircraftType> GetData()
+
+        public IEnumerable<Pilot> GetData()
         {
-            return db.Types.GetAll();
+            return db.Pilots.GetAll();
         }
 
-        public AircraftType GetObject(int id)
+        public Pilot GetObject(int id)
         {
-            return db.Types.Get(id);
+            return db.Pilots.Get(id);
         }
 
         public bool RemoveObject(int id)
         {
-            var type = db.Types.GetAll().FirstOrDefault(item => item.Id == id);
-            if (type != null)
+            var pilot = db.Pilots.GetAll().FirstOrDefault(item => item.Id == id);
+            if (pilot != null)
             {
-                db.Types.Remove(type);
+                db.Pilots.Remove(pilot);
                 return true;
             }
             return false;
         }
 
-        public bool AddObject(AircraftTypeDTO obj)
+        public bool AddObject(PilotDTO obj)
         {
             if (obj != null)
             {
-                db.Types.Add(_mapper.Map<AircraftType>(obj));
+                db.Pilots.Add(_mapper.Map<Pilot>(obj));
                 return true;
             }
             return false;
         }
 
-        public bool UpdateObject(int id, AircraftTypeDTO obj)
+        public bool UpdateObject(int id, PilotDTO obj)
         {
-            return db.Types.UpdateObject(id, _mapper.Map<AircraftType>(obj));
+            return db.Pilots.UpdateObject(id, _mapper.Map<Pilot>(obj));
         }
     }
 }

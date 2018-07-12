@@ -29,7 +29,7 @@ namespace Airport_REST_API.DataAccess.Repositories
 
         public void Remove(Departures entity)
         {
-            db.Departureses.Remove(entity)
+            db.Departureses.Remove(entity);
         }
 
         public bool UpdateObject(int id, Departures obj)

@@ -12,7 +12,7 @@ namespace Airport_REST_API.DataAccess
             new Aircraft {Id = 1,
                 ReleseDate = new DateTime(2008,6,15),
                 Name = "Lastochka" ,
-                Lifetime = DateTime.Now - DateTime.Parse("2008/6/15"),
+                Lifetime = DateTime.Parse("2024/6/26").Date - DateTime.Now,
                 Type =  new AircraftType { Id = 3,CarryingCapacity = 107900,CountOfSeats = 214, Model = "Туполев Ту-204"}}
         };
         public List<AircraftType> AircraftTypes = new List<AircraftType>

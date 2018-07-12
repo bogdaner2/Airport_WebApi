@@ -42,14 +42,24 @@ namespace Airport_REST_API.Services.Service
 
         public bool AddObject(CrewDTO obj)
         {
-            
-            //db.Crews.Add(obj);
+            var stewardesses = db.Stewardess.GetAll().Where(i => obj.StewardessesId.Contains(i.Id) == true).ToList();
+            var pilot = db.Pilots.Get(obj.PilotId);
+            if (stewardesses.Count == 0 || pilot == null) { return false; }
+            var crew = _mapper.Map<Crew>(obj);
+            db.Crews.Add(crew);
             return true;
+
         }
 
         public bool UpdateObject(int id, CrewDTO obj)
         {
-            throw new System.NotImplementedException();
+            var stewardesses = db.Stewardess.GetAll().Where(i => obj.StewardessesId.Contains(i.Id) == true).ToList();
+            var pilot = db.Pilots.Get(obj.PilotId);
+            if (stewardesses.Count == 0 || pilot == null) { return false; }
+            var crew = _mapper.Map<Crew>(obj);
+            crew.Pilot = pilot;
+            crew.Stewardesses = stewardesses;
+            return db.Crews.UpdateObject(id, crew);
         }
     }
 }
