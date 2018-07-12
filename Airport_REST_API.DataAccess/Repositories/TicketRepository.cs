@@ -37,9 +37,8 @@ namespace Airport_REST_API.DataAccess.Repositories
             db.Tickets.Where(i => i.Id == id)
                 .Select(item => {
                     item.Id = obj.Id;
-                    item.DepartureId = obj.DepartureId;
-                    item.Price = obj.Price;
                     item.Number = obj.Number;
+                    item.Price = obj.Price;
                     return item; }).ToList();
             return true;
         }

@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Airport_REST_API.DataAccess.Models;
+using Airport_REST_API.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Airport_REST_API.Controllers
@@ -6,11 +8,16 @@ namespace Airport_REST_API.Controllers
     [Route("api/[controller]")]
     public class DepartureController : Controller
     {
+        private readonly IDepartureService _service;
+        public DepartureController(IDepartureService service)
+        {
+            _service = service;
+        }
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Departures> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _service.GetData();
         }
 
         // GET api/values/5

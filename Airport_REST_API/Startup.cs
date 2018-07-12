@@ -29,6 +29,10 @@ namespace Airport_REST_API
             services.AddTransient<IAircraftService, AircraftService>();
             services.AddTransient<IFlightService, FlightService>();
             services.AddTransient<IAircraftTypeService, AircraftTypeService>();
+            services.AddTransient<ICrewService, CrewService>();
+            services.AddTransient<IStewardessService, StewardessService>();
+            services.AddTransient<IPilotService, PilotService>();
+            services.AddTransient<IDepartureService,DepartureService>();
             services.AddSingleton<UnitOfWork>();
             var mapper = MapperConfiguration().CreateMapper();
             services.AddSingleton(_ => mapper);
