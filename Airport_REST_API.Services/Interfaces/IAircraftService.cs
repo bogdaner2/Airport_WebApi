@@ -3,9 +3,7 @@ using Airport_REST_API.Shared.DTO;
 
 namespace Airport_REST_API.Services.Interfaces
 {
-    public interface IAircraftService : IService<Aircraft>
+    public interface IAircraftService : IService<Aircraft,AircraftDTO>
     {
-        bool AddObject(AircraftDTO obj);
-        bool UpdateObject(int id, AircraftDTO obj);
     }
 }

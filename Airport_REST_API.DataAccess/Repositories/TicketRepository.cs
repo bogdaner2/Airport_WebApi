@@ -26,20 +26,14 @@ namespace Airport_REST_API.DataAccess.Repositories
         {
             db.Tickets.Add(ticket);
         }
-        public void Remove(int id)
+        public void Remove(Ticket entity)
         {
-            var item = db.Tickets.FirstOrDefault(i => i.Id == id);
-            if (item != null)
-            {
-                db.Tickets.Remove(item);
-            }
-            else
-            {
-                throw new Exception();
-            }
+                db.Tickets.Remove(entity);
         }
-        public void UpdateObject(int id, Ticket obj)
+        public bool UpdateObject(int id, Ticket obj)
         {
+            var flag =  db.Tickets.Count(item => item.Id == id).Equals(0);
+            if (flag) return false;
             db.Tickets.Where(i => i.Id == id)
                 .Select(item => {
                     item.Id = obj.Id;
@@ -47,6 +41,7 @@ namespace Airport_REST_API.DataAccess.Repositories
                     item.Price = obj.Price;
                     item.Number = obj.Number;
                     return item; }).ToList();
+            return true;
         }
     }
 }

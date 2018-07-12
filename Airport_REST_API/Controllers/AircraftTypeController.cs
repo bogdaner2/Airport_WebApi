@@ -11,11 +11,9 @@ namespace Airport_REST_API.Controllers
     public class AircraftTypeController : Controller
     {
         private readonly IAircraftTypeService _service;
-        private readonly IMapper _mapper;
-        public AircraftTypeController(IAircraftTypeService service, IMapper mapper)
+        public AircraftTypeController(IAircraftTypeService service)
         {
             _service = service;
-            _mapper = mapper;
         }
         // GET api/values
         [HttpGet]
@@ -35,15 +33,15 @@ namespace Airport_REST_API.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]AircraftTypeDTO aircraft)
         {
-            var result = _service.AddObject(_mapper.Map<AircraftType>(aircraft));
+            var result = _service.AddObject(aircraft);
             return result == true ? StatusCode(200) : StatusCode(404);
         }
 
         // PUT api/aircrafttype/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]AircraftDTO aircraft)
+        public IActionResult Put(int id, [FromBody]AircraftTypeDTO aircraft)
         {
-            var result = _service.AddObject(_mapper.Map<AircraftType>(aircraft));
+            var result = _service.AddObject(aircraft);
             return result == true ? StatusCode(200) : StatusCode(404);
         }
 

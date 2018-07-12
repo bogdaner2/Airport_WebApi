@@ -26,16 +26,11 @@ namespace Airport_REST_API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<DataSource>();
-            //services.AddSingleton<IRepository<Aircraft>, AircraftRepository>();
-            //services.AddSingleton<IRepository<AircraftType>, AircraftTypeRepository>();
             services.AddTransient<ITicketService,TicketService>();
             services.AddTransient<IAircraftService, AircraftService>();
+            services.AddTransient<IFlightService, FlightService>();
             services.AddTransient<IAircraftTypeService, AircraftTypeService>();
             services.AddSingleton<UnitOfWork>();
-            //services.AddSingleton<AircraftTypeRepository>();
-            //services.AddSingleton<AircraftRepository>();
-            //services.AddSingleton<TicketRepository>();
-            //services.AddSingleton<CrewRepository>();
             var mapper = MapperConfiguration().CreateMapper();
             services.AddSingleton(_ => mapper);
             services.AddMvc();

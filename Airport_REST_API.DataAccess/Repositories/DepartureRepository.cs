@@ -27,12 +27,12 @@ namespace Airport_REST_API.DataAccess.Repositories
             throw new System.NotImplementedException();
         }
 
-        public void Remove(int id)
+        public void Remove(Departures entity)
         {
             throw new System.NotImplementedException();
         }
 
-        public void UpdateObject(int id, Departures obj)
+        public bool UpdateObject(int id, Departures obj)
         {
             throw new System.NotImplementedException();
         }

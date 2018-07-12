@@ -28,14 +28,23 @@ namespace Airport_REST_API.DataAccess.Repositories
             db.Aircrafts.Add(entity);
         }
 
-        public void Remove(int id)
+        public void Remove(Aircraft entity)
         {
-           // db.Aircrafts.Remove(entity);
+            db.Aircrafts.Remove(entity);
         }
 
-        public void UpdateObject(int id, Aircraft obj)
+        public bool UpdateObject(int id, Aircraft obj)
         {
-            throw new System.NotImplementedException();
+            //db.Aircrafts.Where(i => i.Id == id)
+            //    .Select(item =>
+            //    {
+            //        item.Id = obj.Id;
+            //        item.DepartureId = obj.DepartureId;
+            //        item.Price = obj.Price;
+            //        item.Number = obj.Number;
+            //        return item;
+            //    }).ToList();
+            return true;
         }
     }
 }

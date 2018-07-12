@@ -1,50 +1,58 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Airport_REST_API.DataAccess;
 using Airport_REST_API.DataAccess.Models;
 using Airport_REST_API.Services.Interfaces;
+using Airport_REST_API.Shared.DTO;
+using AutoMapper;
 
 namespace Airport_REST_API.Services.Service
 {
     public class TicketService : ITicketService
     {
-        private readonly UnitOfWork repository;
+        private readonly UnitOfWork db;
+        private readonly IMapper _mapper;
 
-        public TicketService(UnitOfWork repository)
+        public TicketService(UnitOfWork uof,IMapper mapper)
         {
-            this.repository = repository;
+            db = uof;
+            _mapper = mapper;
         }
         public IEnumerable<Ticket> GetData()
         {
-            return repository.Tickets.GetAll();
+            return db.Tickets.GetAll();
         }
 
         public Ticket GetObject(int id)
         {
-            var result = repository.Tickets.Get(id);
+            var result = db.Tickets.Get(id);
             return result;
         }
 
         public bool RemoveObject(int id)
         {
-               
-               repository.Tickets.Remove(id);
-               return true;
-        }
-
-        public bool AddObject(Ticket ticket)
-        {
+            var ticket = db.Tickets.GetAll().FirstOrDefault(item => item.Id == id);
             if (ticket != null)
             {
-                repository.Tickets.Add(ticket);
+                db.Tickets.Remove(ticket);
                 return true;
             }
             return false;
         }
 
-        public bool UpdateObject(int id,Ticket obj)
+        public bool AddObject(TicketDTO ticket)
         {
-            repository.Tickets.UpdateObject(id,obj);
+            if (ticket != null)
+            {
+                db.Tickets.Add(_mapper.Map<Ticket>(ticket));
                 return true;
+            }
+            return false;
+        }
+
+        public bool UpdateObject(int id,TicketDTO obj)
+        {
+            return db.Tickets.UpdateObject(id, _mapper.Map<Ticket>(obj));
         }
     }
 }

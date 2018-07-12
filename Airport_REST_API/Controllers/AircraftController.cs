@@ -36,7 +36,7 @@ namespace Airport_REST_API.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
             var result = _service.AddObject(aircraft);
             return result == true ? StatusCode(200) : StatusCode(404);
@@ -48,7 +48,7 @@ namespace Airport_REST_API.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
             var result = _service.UpdateObject(id,aircraft);
             return result == true ? StatusCode(200) : StatusCode(404);

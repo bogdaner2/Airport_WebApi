@@ -1,38 +1,46 @@
 ﻿using System.Collections.Generic;
+using System.Net;
+using Airport_REST_API.DataAccess.Models;
+using Airport_REST_API.Services.Interfaces;
 using Airport_REST_API.Services.Service;
+using Airport_REST_API.Shared.DTO;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
+using System.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace Airport_REST_API.Controllers
 {
     [Route("api/[controller]")]
     public class FlightController : Controller
     {
-        //private readonly IService _service;
-        //private readonly IMapper _mapper;
-        //public FlightController(IService service,IMapper mapper)
-        //{
-        //    _service = service;
-        //    _mapper = mapper;
-        //}
-        // GET api/values
+        private readonly IFlightService _service;
+        public FlightController(IFlightService service)
+        {
+            _service = service;
+        }
+        // GET api/flight
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Flight> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _service.GetData();
         }
 
-        // GET api/values/5
+        // GET api/flight/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Flight Get(int id)
         {
-            return "value";
+            return _service.GetObject(id);
         }
 
-        // POST api/values
+        // POST api/flight
         [HttpPost]
-        public void Post([FromBody]string value)
+        public IActionResult Post([FromBody]FlightDTO flight)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState); ;
+            //var result = _service.
+            return null;
         }
 
         // PUT api/values/5

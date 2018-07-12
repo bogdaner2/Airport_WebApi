@@ -4,6 +4,7 @@ namespace Airport_REST_API.Shared.DTO
 {
     public class AircraftDTO
     {
+        [Required]
         public int Id { get; set; }
         public string Name { get; set; }
         [Required]

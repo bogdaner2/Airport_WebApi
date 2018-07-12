@@ -7,7 +7,7 @@ namespace Airport_REST_API.DataAccess.Repositories
         IEnumerable<T> GetAll();
         T Get(int id);
         void Add(T entity);
-        void Remove(int id);
-        void UpdateObject(int id, T obj);
+        void Remove(T entity);
+        bool UpdateObject(int id, T obj);
     }
 }

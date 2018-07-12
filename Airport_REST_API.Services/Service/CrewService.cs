@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Airport_REST_API.DataAccess;
 using Airport_REST_API.DataAccess.Models;
 using Airport_REST_API.Services.Interfaces;
@@ -30,8 +31,13 @@ namespace Airport_REST_API.Services.Service
 
         public bool RemoveObject(int id)
         {
-             db.Crews.Remove(id);
-             return true;
+            var crew = db.Crews.GetAll().FirstOrDefault(item => item.Id == id);
+            if (crew != null)
+            {
+                db.Crews.Remove(crew);
+                return true;
+            }
+            return false;
         }
 
         public bool AddObject(CrewDTO obj)

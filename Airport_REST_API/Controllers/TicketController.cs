@@ -38,10 +38,9 @@ namespace Airport_REST_API.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var errors = ModelState.Select(x => x.Value.Errors).Where(y => y.Count > 0);
-                return StatusCode(400, errors);
+                return BadRequest(ModelState);
             }
-            var result = _service.AddObject(_mapper.Map<Ticket>(ticket));
+            var result = _service.AddObject(ticket);
             return result == true ? StatusCode(200) : StatusCode(404);
         }
 
@@ -51,10 +50,9 @@ namespace Airport_REST_API.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var errors = ModelState.Select(x => x.Value.Errors).Where(y => y.Count > 0);
-                return StatusCode(400, errors);
+                return BadRequest(ModelState);
             }
-            var result = _service.UpdateObject(id, _mapper.Map<Ticket>(ticket));
+            var result = _service.UpdateObject(id,ticket);
             return result == true ? StatusCode(200) : StatusCode(404);
         }
 
