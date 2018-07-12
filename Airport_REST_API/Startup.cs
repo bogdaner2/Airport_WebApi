@@ -76,7 +76,7 @@ namespace Airport_REST_API
                 //Into DTO
                 cfg.CreateMap<Ticket,TicketDTO>();
                 cfg.CreateMap<Aircraft, AircraftDTO>()
-                    .ForMember(i => i.ReleseDate, opt => opt.MapFrom(m => m.ReleseDate.ToShortDateString()))
+                    .ForMember(i => i.ReleseDate, opt => opt.MapFrom(m => m.ReleseDate.ToLongDateString()))
                     .ForMember(i => i.Lifetime, opt => opt.MapFrom(m => m.Lifetime.TotalDays));
                 cfg.CreateMap<Pilot, PilotDTO>();
                 cfg.CreateMap<Stewardess, StewardessDTO>();
@@ -88,7 +88,7 @@ namespace Airport_REST_API
                 cfg.CreateMap<Departures, DeparturesDTO>()
                     .ForMember(i => i.AircraftId, opt => opt.MapFrom(m => m.Aircraft.Id))
                     .ForMember(i => i.CrewId, opt => opt.MapFrom(m => m.Crew.Id))
-                    .ForMember(i => i.DepartureTime, opt => opt.MapFrom(m => m.DepartureTime.ToShortDateString()));
+                    .ForMember(i => i.DepartureTime, opt => opt.MapFrom(m => m.DepartureTime.ToLongDateString()));
                 cfg.CreateMap<Crew, CrewDTO>()
                     .ForMember(i => i.StewardessesId, opt => opt.MapFrom(m => m.Stewardesses.Select(s => s.Id)))
                     .ForMember(i => i.PilotId, opt => opt.MapFrom(m => m.Pilot.Id));

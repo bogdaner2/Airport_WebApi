@@ -7,7 +7,9 @@ namespace Airport_REST_API.DataAccess.Models
     {
         [Required]
         public int Id { get; set; }
+        [Required]
         public Pilot Pilot { get; set; }
+        [Required]
         public List<Stewardess> Stewardesses { get; set; }
     }
 }
