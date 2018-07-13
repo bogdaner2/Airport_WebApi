@@ -41,10 +41,7 @@ namespace Airport_REST_API.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var errors = ModelState.Select(x => x.Value.Errors)
-                    .Where(y => y.Count > 0)
-                    .ToList();
-                return BadRequest(errors);
+                return BadRequest(ModelState);
             }
             var result = _service.AddObject(flight);
             return result == true ? StatusCode(200) : StatusCode(404);

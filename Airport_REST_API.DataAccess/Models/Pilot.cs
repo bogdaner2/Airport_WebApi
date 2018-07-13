@@ -14,6 +14,6 @@ namespace Airport_REST_API.DataAccess.Models
         public DateTime DateOfBirth { get; set; }
         [Required]
         [Range(1, 50)]
-        public int Experierence { get; set; }
+        public int Experience { get; set; }
     }
 }

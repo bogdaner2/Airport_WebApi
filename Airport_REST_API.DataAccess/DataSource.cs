@@ -48,11 +48,11 @@ namespace Airport_REST_API.DataAccess
         {
             new Pilot
             {
-                Id = 1,FirstName = "Ivan" ,LastName = "Kotov",Experierence = 10,DateOfBirth = new DateTime(1978,6,17)
+                Id = 1,FirstName = "Ivan" ,LastName = "Kotov",Experience = 10,DateOfBirth = new DateTime(1978,6,17)
             },
             new Pilot
             {
-                Id = 2,FirstName = "Oleg" ,LastName = "Ivanov",Experierence = 3,DateOfBirth = new DateTime(1987,9,27),
+                Id = 2,FirstName = "Oleg" ,LastName = "Ivanov",Experience = 3,DateOfBirth = new DateTime(1987,9,27),
             }
         };
         public List<Crew> Crews = new List<Crew>
@@ -62,7 +62,7 @@ namespace Airport_REST_API.DataAccess
               Id = 1,
               Pilot = new Pilot
               {
-                  Id = 1,FirstName = "Ivan" ,LastName = "Kotov",Experierence = 10,DateOfBirth = new DateTime(1978,6,17)
+                  Id = 1,FirstName = "Ivan" ,LastName = "Kotov",Experience = 10,DateOfBirth = new DateTime(1978,6,17)
               },
               Stewardesses = new List<Stewardess>
               {
@@ -92,7 +92,7 @@ namespace Airport_REST_API.DataAccess
                     Id = 1,
                     Pilot = new Pilot
                     {
-                        Id = 1,FirstName = "Ivan" ,LastName = "Kotov",Experierence = 10,DateOfBirth = new DateTime(1978,6,17)
+                        Id = 1,FirstName = "Ivan" ,LastName = "Kotov",Experience = 10,DateOfBirth = new DateTime(1978,6,17)
                     },
                     Stewardesses = new List<Stewardess>
                     {
@@ -113,7 +113,7 @@ namespace Airport_REST_API.DataAccess
             new Flight
             {
                 Id = 1,Number = "107",PointOfDeparture = "London",Destination = "Paris",DepartureTime = DateTime.Now,
-                ArrivelTime = DateTime.Now,
+                ArrivalTime = DateTime.Now,
                 Ticket = new List<Ticket>
                 {
                     new Ticket {Id = 1, Number = "AH101", Price = 100},

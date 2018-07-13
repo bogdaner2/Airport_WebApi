@@ -6,8 +6,8 @@ namespace Airport_REST_API.Shared.DTO
     public class AircraftDTO
     {
         [Required]
-        [Range(1, Int32.MaxValue)]
-        public int Id { get; set; }
+        [Range(1,Int32.MaxValue)]
+        public int? Id { get; set; }
 
         [Required]
         [RegularExpression("^[A-Z]{3}[1-9]{3}$")]
