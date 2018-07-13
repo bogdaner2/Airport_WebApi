@@ -5,18 +5,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTO\" />
-    <Folder Include="Service\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
-    <PackageReference Include="NUnit" Version="3.10.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Airport_REST_API.DataAccess\Airport_REST_API.DataAccess.csproj" />
+    <ProjectReference Include="..\Airport_REST_API.Services\Airport_REST_API.Services.csproj" />
+    <ProjectReference Include="..\Airport_REST_API.Shared\Airport_REST_API.Shared.csproj" />
   </ItemGroup>
 
 </Project>
