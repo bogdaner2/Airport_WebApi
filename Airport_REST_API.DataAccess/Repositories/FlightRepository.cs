@@ -39,7 +39,7 @@ namespace Airport_REST_API.DataAccess.Repositories
             db.Flights.Where(i => i.Id == id)
                 .Select(item => {
                     item.Id = obj.Id;
-                    item.ArrivelTime = obj.ArrivelTime;
+                    item.ArrivalTime = obj.ArrivalTime;
                     item.DepartureTime = obj.DepartureTime;
                     item.Number = obj.Number;
                     item.PointOfDeparture = obj.PointOfDeparture;

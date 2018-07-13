@@ -65,7 +65,7 @@ namespace Airport_REST_API
                 cfg.CreateMap<StewardessDTO, Stewardess>();
                 cfg.CreateMap<AircraftTypeDTO, AircraftType>();
                 cfg.CreateMap<FlightDTO, Flight>()
-                    .ForMember(i => i.ArrivelTime, opt => opt.MapFrom(m => DateTime.Parse(m.ArrivelTime)));
+                    .ForMember(i => i.ArrivalTime, opt => opt.MapFrom(m => DateTime.Parse(m.ArrivelTime)));
                 cfg.CreateMap<DeparturesDTO, Departures>()
                     .ForMember(i => i.Aircraft, opt => opt.Ignore())
                     .ForMember(i => i.Crew, opt => opt.Ignore())
@@ -76,19 +76,19 @@ namespace Airport_REST_API
                 //Into DTO
                 cfg.CreateMap<Ticket,TicketDTO>();
                 cfg.CreateMap<Aircraft, AircraftDTO>()
-                    .ForMember(i => i.ReleseDate, opt => opt.MapFrom(m => m.ReleseDate.ToShortDateString()))
+                    .ForMember(i => i.ReleseDate, opt => opt.MapFrom(m => m.ReleseDate.ToLongDateString()))
                     .ForMember(i => i.Lifetime, opt => opt.MapFrom(m => m.Lifetime.TotalDays));
                 cfg.CreateMap<Pilot, PilotDTO>();
                 cfg.CreateMap<Stewardess, StewardessDTO>();
                 cfg.CreateMap<AircraftType, AircraftTypeDTO>();
                 cfg.CreateMap<Flight, FlightDTO>()
-                    .ForMember(i => i.ArrivelTime, opt => opt.MapFrom(m => m.ArrivelTime.ToLongDateString()))
+                    .ForMember(i => i.ArrivelTime, opt => opt.MapFrom(m => m.ArrivalTime.ToLongDateString()))
                     .ForMember(i => i.DepartureTime, opt => opt.MapFrom(m => m.DepartureTime.ToLongDateString()))
                     .ForMember(i => i.TicketsId, opt => opt.MapFrom(m => m.Ticket.Select(s => s.Id)));
                 cfg.CreateMap<Departures, DeparturesDTO>()
                     .ForMember(i => i.AircraftId, opt => opt.MapFrom(m => m.Aircraft.Id))
                     .ForMember(i => i.CrewId, opt => opt.MapFrom(m => m.Crew.Id))
-                    .ForMember(i => i.DepartureTime, opt => opt.MapFrom(m => m.DepartureTime.ToShortDateString()));
+                    .ForMember(i => i.DepartureTime, opt => opt.MapFrom(m => m.DepartureTime.ToLongDateString()));
                 cfg.CreateMap<Crew, CrewDTO>()
                     .ForMember(i => i.StewardessesId, opt => opt.MapFrom(m => m.Stewardesses.Select(s => s.Id)))
                     .ForMember(i => i.PilotId, opt => opt.MapFrom(m => m.Pilot.Id));

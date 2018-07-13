@@ -43,7 +43,7 @@ namespace Airport_REST_API.DataAccess.Repositories
                     item.FirstName = obj.FirstName;
                     item.LastName = obj.LastName;
                     item.DateOfBirth = obj.DateOfBirth;
-                    item.Experierence = obj.Experierence;
+                    item.Experience = obj.Experience;
                     return item;
                 }).ToList();
             return true;
